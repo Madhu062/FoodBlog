@@ -127,3 +127,8 @@
 .App {
   padding: 20px 20px;
 }
+.user-card{
+  border: 1px solid black;
+  width: 250px;
+  height: 300px;
+}
