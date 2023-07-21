@@ -7,22 +7,21 @@ export default function Header() {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
+    <div className="flex shadow-lg bg-purple-300 justify-between">
       <div className="logo-container">
-        <img className='logo' src={download} alt="logo" />
+        <img className='w-56' src={download} alt="logo" />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li>  <Link to="/contact">Contact Us</Link>
-          </li>
-          <li><Link to="/grocery">Grocery</Link></li>
+      <div className="flex items-center">
+        <ul className="flex p-4 m-4">
+          <li className="px-4">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+          <li className="px-4"><Link to="/">Home</Link></li>
+          <li className="px-4"><Link to="/about">About</Link></li>
+          <li className="px-4">  <Link to="/contact">Contact Us</Link>          </li>
+          <li className="px-4"><Link to="/grocery">Grocery</Link></li>
 
-          <li>Cart</li>
+          <li className="px-4">Cart</li>
           <button
-            className="login"
+            className="px-4"
             onClick={() => {
               btnNameReact === "Login"
                 ? setBtnNameReact("Logout")

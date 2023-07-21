@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import React, { Suspense, lazy } from "react";
 import Header from './components/Header';
 import Body from './components/Body';
