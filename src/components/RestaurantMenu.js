@@ -33,7 +33,7 @@ function RestaurantMenu() {
                 {itemCards.map((item) => (
                     <div className='bg-gray-100' >
                         <div className='py-2' key={item.card.info.id}>
-                            <img className='rounded-lg w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
+                            <img className=' w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
 
                         </div>
                         <div >
