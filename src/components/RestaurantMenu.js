@@ -6,6 +6,7 @@ import { Divider } from '@mui/material';
 import { CDN_URL } from '../utils/constants';
 import { Rating } from '@mui/material';
 import Switch from '@mui/material/Switch';
+import '../App.css'
 
 function RestaurantMenu() {
     const { resId } = useParams();
@@ -25,65 +26,23 @@ function RestaurantMenu() {
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
-        if(checked === false){
+        if (checked === false) {
             const filteredList = itemCards.filter((res) =>
 
-            res.card.info.itemAttribute.vegClassifier === "VEG"
-        );
-        setVeg(filteredList)
+                res.card.info.itemAttribute.vegClassifier === "VEG"
+            );
+            setVeg(filteredList)
 
         }
-       
+
     };
 
 
 
     return checked === false ?
         <div className='px-8'>
-            <img className='w-[1500px] py-8 h-[600px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
-            <div className='font-bold py-4 text-7xl'>{name}</div>
-            <div className='font-medium  text-lg'>
-                {cuisines.join(", ")} - {costForTwoMessage}
-            </div>
-            <div>
-                <Rating name="read-only" precision={0.5}
-                    value={avgRating} readOnly />
-            </div>
-            <div className='font-semibold'>       Veg Only         <Switch
-                onChange={
-                    handleChange
-                }
-            />
-            </div>
-
-            <div className='w-[800px] flex-row'>
-                {itemCards.map((item) => (
-                    <div className='bg-gray-100' key={item.card.info.id} >
-                        <div className='py-2' key={item.card.info.id}>
-                            <img className=' w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
-                        </div>
-                        <div >
-                            {item.card.info.name}
-                        </div>
-                        <div>
-                            {item.card.info.itemAttribute.vegClassifier}
-
-                        </div>
-                        <div >
-                            Cost -{" Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-                        </div>
-                        <div >{item.card.info.description}</div>
-                        <div> {item.card.info.ratings.aggregatedRating.rating}</div>
-                        <div>  <Divider /></div>
-
-                    </div>
-
-                ))}
-            </div>
-        </div>
-        : (
-            <div className='px-8'>
-                <img className='w-[1500px] py-8 h-[600px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
+            <img className='w-[1800px] py-8 h-[800px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
+            <div className='flex-containerMenu'>
                 <div className='font-bold py-4 text-7xl'>{name}</div>
                 <div className='font-medium  text-lg'>
                     {cuisines.join(", ")} - {costForTwoMessage}
@@ -94,34 +53,82 @@ function RestaurantMenu() {
                 </div>
                 <div className='font-semibold'>       Veg Only         <Switch
                     onChange={
-                     handleChange
+                        handleChange
                     }
                 />
                 </div>
 
-                <div className='w-[800px] flex-row'>
-                    {veg.map((item) => (
-                        <div className='bg-gray-100' key={item.card.info.id} >
-                            <div className='py-2' >
-                                <img className=' w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
+                <div className='w-[800px]'>
+                    {itemCards.map((item) => (
+                        <div key={item.card.info.id} >
+                            <div className='flex-containerMenu bg-slate-50'>
+                                <div className='py-2' key={item.card.info.id}>
+                                    <img className=' w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
+                                </div>
+                                <div >
+                                    {item.card.info.name}
+                                </div>
+                                <div >
+                                    Cost -{" Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+                                </div>
+                                <div >{item.card.info.description}</div>
+                                <div>Ratings - {item.card.info.ratings.aggregatedRating.rating}</div>
                             </div>
-                            <div >
-                                {item.card.info.name}
-                            </div>
-                            <div>
-                                {item.card.info.itemAttribute.vegClassifier}
 
-                            </div>
-                            <div >
-                                Cost -{" Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-                            </div>
-                            <div >{item.card.info.description}</div>
-                            <div> {item.card.info.ratings.aggregatedRating.rating}</div>
-                            <div>  <Divider /></div>
+                            <div className='py-2'>  <Divider /></div>
+
 
                         </div>
 
+
                     ))}
+                </div>
+            </div>
+
+        </div>
+        : (
+            <div className='px-8'>
+                <img className='w-[1800px] py-8 h-[800px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
+                <div className='flex-containerMenu'>
+                    <div className='font-bold py-4 text-7xl'>{name}</div>
+                    <div className='font-medium  text-lg'>
+                        {cuisines.join(", ")} - {costForTwoMessage}
+                    </div>
+                    <div>
+                        <Rating name="read-only" precision={0.5}
+                            value={avgRating} readOnly />
+                    </div>
+                    <div className='font-semibold'>       Veg Only         <Switch
+                        onChange={
+                            handleChange
+                        }
+                    />
+                    </div>
+
+                    <div className='w-[800px] '>
+                        {veg.map((item) => (
+                            <div key={item.card.info.id} >
+                                <div className='flex-containerMenu bg-slate-50'>
+                                    <div className='py-2' key={item.card.info.id}>
+                                        <img className=' w-[300px] h-[250px]' src={CDN_URL + item.card.info.imageId} alt="logo" />
+                                    </div>
+                                    <div >
+                                        {item.card.info.name}
+                                    </div>
+                                    <div >
+                                        Cost -{" Rs."} {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+                                    </div>
+                                    <div >{item.card.info.description}</div>
+                                    <div>Ratings - {item.card.info.ratings.aggregatedRating.rating}</div>
+                                </div>
+
+                                <div className='py-2'>  <Divider /></div>
+
+
+                            </div>
+
+                        ))}
+                    </div>
                 </div>
             </div>
         );

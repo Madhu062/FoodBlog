@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import '../App.css'
 
 export default function Body() {
     const [listOfRestaurants, setListOfRestraunt] = useState([]);
@@ -32,13 +33,20 @@ export default function Body() {
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
-        <div className='body'>
-            <div className="flex">
-                <div className="p-4 m-4">
+        <div>
+            <div className="flex-container">
+                <div className="px-2 py-2">
                     <input type="text" value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value);
                         }}
+                        // onKeyDown={()=>{
+                        //     const filterRestaurant = listOfRestaurants.filter((res) =>
+                        //     res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                        // );
+
+                        // setFilteredRestaurant(filterRestaurant); 
+                        // }}
                         className="border border-solid border-black" />
                     <button className="px-4 rounded-xl py-2 m-4 bg-purple-300"
                         onClick={() => {
@@ -50,7 +58,7 @@ export default function Body() {
                         }}
                     >Search</button>
                 </div>
-                <div className='p-4 m-4'>
+                <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {
                         const filteredList = listOfRestaurants.filter((res) => res.data.avgRating > 4
                         );
@@ -59,14 +67,14 @@ export default function Body() {
 
                     }}>Top Rated Restaurants</button>
                 </div>
-                <div className='p-4 m-4'>
+                <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {
                         setFilteredRestaurant(listOfRestaurants);
                         console.log(listOfRestaurants)
                     }}>Clear</button>
                 </div>
             </div>
-            <div className='flex flex-wrap'>
+            <div className='flex-container'>
                 {
                     filteredRestaurant.map((restaurant) => (
                         <Link key={restaurant.data.id} to={"/restaurant/" + restaurant.data.id}>
