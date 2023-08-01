@@ -18,8 +18,12 @@ export default function Body() {
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json();
-        setListOfRestraunt(json?.data?.cards[2]?.data?.data?.cards)
-        setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+        setListOfRestraunt(
+            json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+          );
+          setFilteredRestaurant(
+            json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+          );
 
     };
     const onlineStatus = useOnlineStatus();
@@ -77,8 +81,8 @@ export default function Body() {
             <div className='flex-container'>
                 {
                     filteredRestaurant.map((restaurant) => (
-                        <Link key={restaurant.data.id} to={"/restaurant/" + restaurant.data.id}>
-                            <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+                        <Link key={restaurant?.info.id} to={"/restaurant/" + restaurant?.info.id}>
+                            <RestaurantCard key={restaurant?.info.id} resData={restaurant?.info} />
                         </Link>))
                 }
             </div>

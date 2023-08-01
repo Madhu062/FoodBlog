@@ -7,7 +7,7 @@ export default function Header() {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="flex shadow-lg bg-purple-300 justify-between">
+    <div className="flex shadow-lg bg-purple-200 justify-between">
       <div className="logo-container">
         <img className='w-56' src={download} alt="logo" />
       </div>

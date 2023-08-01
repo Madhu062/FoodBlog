@@ -1,7 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 
 function RestaurantCard({resData})   {
-    const {cloudinaryImageId,name,cuisines,avgRating,costForTwo,deliveryTime} = resData?.data;
+    const {cloudinaryImageId,name,cuisines,avgRating,costForTwo,deliveryTime} = resData;
  
     return (
       <div className='m-4 p-4 rounded-lg flex-wrap bg-gray-200 hover:bg-gray-300 w-[430px] h-[450px] break-words'>  
