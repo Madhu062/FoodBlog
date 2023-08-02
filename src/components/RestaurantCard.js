@@ -9,7 +9,7 @@ function RestaurantCard({resData})   {
         <h3 className="font-bold text-xl py-2">{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
         <h4>{avgRating} starts</h4>
-        <h4>{costForTwo /100}</h4>
+        <h4>{costForTwo}</h4>
         <h4>{deliveryTime} minutes</h4>
       </div>
     )
