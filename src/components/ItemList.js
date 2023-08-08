@@ -5,7 +5,7 @@ import { Divider } from '@mui/material';
 function ItemList({ items }) {
 
     return  (
-        <div>{items.map((item) =>
+        <div >{items.map((item) =>
             <div key={item.card.info.id} >
                 <div className='flex-containerMenu bg-slate-50'>
                     <div className='py-2' key={item.card.info.id}>

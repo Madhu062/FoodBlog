@@ -1,9 +1,10 @@
 import RestaurantCard from "./RestaurantCard"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import '../App.css'
+import UserContext from "../utils/UserContext";
 
 export default function Body() {
     const [listOfRestaurants, setListOfRestraunt] = useState([]);
@@ -26,6 +27,7 @@ export default function Body() {
           );
 
     };
+    const {loggedInUser,setUserName} = useContext(UserContext)
     const onlineStatus = useOnlineStatus();
 
     if (onlineStatus === false)
@@ -37,7 +39,7 @@ export default function Body() {
     return listOfRestaurants.length === 0 ? (
         <Shimmer />
     ) : (
-        <div>
+        <div className="shadow-lg">
             <div className="flex-container">
                 <div className="px-2 py-2">
                     <input type="text" value={searchText}
@@ -70,6 +72,12 @@ export default function Body() {
                         console.log(filteredList)
 
                     }}>Top Rated Restaurants</button>
+                </div>
+                <div className='px-2 py-2'>
+                 <input  className="border border-solid border-black"  value={loggedInUser}
+                        onChange={(e) => {
+                            setUserName(e.target.value);
+                        }} />
                 </div>
                 <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {

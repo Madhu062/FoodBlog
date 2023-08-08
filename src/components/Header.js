@@ -1,11 +1,15 @@
 import download from "../download.png"
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { IconButton } from "@mui/material";
+import UserContext from "../utils/UserContext";
+
 export default function Header() {
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
+
   return (
     <div className="flex shadow-lg bg-purple-200 justify-between">
       <div className="logo-container">
@@ -29,7 +33,9 @@ export default function Header() {
             }}
           >
             {btnNameReact}
-          </button>        </ul>
+          </button>     
+          <li className="px-4 ">{loggedInUser}</li>
+   </ul>
       </div>
     </div>
   )

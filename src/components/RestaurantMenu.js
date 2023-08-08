@@ -15,8 +15,7 @@ function RestaurantMenu() {
     const [veg, setVeg] = useState([])
     const resInfo = useRestaurantMenu(resId);
     const [checked, setChecked] = React.useState(false);
-
-
+    const [showIndex, setShowIndex] = useState(null);
     if (resInfo === null) return <Shimmer />;
 
     const { name, cuisines, costForTwoMessage, cloudinaryImageId, avgRating } =
@@ -24,7 +23,6 @@ function RestaurantMenu() {
 
     const { itemCards } =
         resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1])
 
     const category = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c => c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"))
     const handleChange = (event) => {
@@ -41,32 +39,59 @@ function RestaurantMenu() {
     };
 
 
-    return (
-        <div className='px-8 shadow-lg'>
-            <img className='w-[1800px] py-8 h-[800px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
-            <div className='flex-containerMenu'>
-                <div className='font-bold py-4 text-7xl'>{name}</div>
-                <div className='font-medium  text-lg'>
-                    {cuisines.join(", ")} - {costForTwoMessage}
-                </div>
-                <div>
-                    <Rating name="read-only" precision={0.5}
-                        value={avgRating} readOnly />
-                </div>
-                <div className='font-semibold'>       Veg Only         <Switch
-                    onChange={
-                        handleChange
-                    }
-                />
-                </div>
-                {category.map((c) => (<RestaurantCategory data={c?.card?.card} />))}
-
-
+    return checked === false ? (<div className='px-8 shadow-lg'>
+        <img className='w-[1800px] py-8 h-[800px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
+        <div className='flex-containerMenu'>
+            <div className='font-bold py-4 text-7xl'>{name}</div>
+            <div className='font-medium  text-lg'>
+                {cuisines.join(", ")} - {costForTwoMessage}
             </div>
+            <div>
+                <Rating name="read-only" precision={0.5}
+                    value={avgRating} readOnly />
+            </div>
+            <div className='font-semibold'>       Veg Only         <Switch
+                onChange={
+                    handleChange
+                }
+            />
+            </div>
+            {category.map((c, index) => (<RestaurantCategory data={c?.card?.card}
+        
+                showItems={index === showIndex ? true : false}
+                setShowIndex={() => setShowIndex(index)}
+            />))}
+
 
         </div>
 
-    );
+    </div>) : (<div className='px-8 shadow-lg'>
+        <img className='w-[1800px] py-8 h-[800px]' src={CDN_URL + cloudinaryImageId} alt="logo" />
+        <div className='flex-containerMenu'>
+            <div className='font-bold py-4 text-7xl'>{name}</div>
+            <div className='font-medium  text-lg'>
+                {cuisines.join(", ")} - {costForTwoMessage}
+            </div>
+            <div>
+                <Rating name="read-only" precision={0.5}
+                    value={avgRating} readOnly />
+            </div>
+            <div className='font-semibold'>       Veg Only         <Switch
+                onChange={
+                    handleChange
+                }
+            />
+            </div>
+            {category.map((c, index) => (<RestaurantCategory data={c?.card?.card}
+                showItems={index === showIndex ? true : false}
+                setShowIndex={() => setShowIndex(index)}
+            />))}
+
+
+        </div>
+
+    </div>)
+
 
 }
 
