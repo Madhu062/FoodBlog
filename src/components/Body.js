@@ -21,13 +21,13 @@ export default function Body() {
         const json = await data.json();
         setListOfRestraunt(
             json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-          );
-          setFilteredRestaurant(
+        );
+        setFilteredRestaurant(
             json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-          );
+        );
 
     };
-    const {loggedInUser,setUserName} = useContext(UserContext)
+    const { loggedInUser, setUserName } = useContext(UserContext)
     const onlineStatus = useOnlineStatus();
 
     if (onlineStatus === false)
@@ -57,7 +57,7 @@ export default function Body() {
                     <button className="px-4 rounded-xl py-2 m-4 bg-purple-300"
                         onClick={() => {
                             const filterRestaurant = listOfRestaurants.filter((res) =>
-                                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                                res.info.name.toLowerCase().includes(searchText.toLowerCase())
                             );
 
                             setFilteredRestaurant(filterRestaurant);
@@ -66,7 +66,7 @@ export default function Body() {
                 </div>
                 <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {
-                        const filteredList = listOfRestaurants.filter((res) => res.data.avgRating > 4
+                        const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4
                         );
                         setFilteredRestaurant(filteredList);
                         console.log(filteredList)
@@ -82,7 +82,6 @@ export default function Body() {
                 <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {
                         setFilteredRestaurant(listOfRestaurants);
-                        console.log(listOfRestaurants)
                     }}>Clear</button>
                 </div>
             </div>
