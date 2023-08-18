@@ -73,12 +73,12 @@ export default function Body() {
 
                     }}>Top Rated Restaurants</button>
                 </div>
-                <div className='px-2 py-2'>
+                {/* <div className='px-2 py-2'>
                  <input  className="border border-solid border-black"  value={loggedInUser}
                         onChange={(e) => {
                             setUserName(e.target.value);
                         }} />
-                </div>
+                </div> */}
                 <div className='px-2 py-2'>
                     <button className="px-4 py-2 m-4 rounded-xl bg-purple-300" onClick={() => {
                         setFilteredRestaurant(listOfRestaurants);
