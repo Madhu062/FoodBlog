@@ -1,10 +1,9 @@
 import RestaurantCard from "./RestaurantCard"
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import '../App.css'
-import UserContext from "../utils/UserContext";
 
 export default function Body() {
     const [listOfRestaurants, setListOfRestraunt] = useState([]);
@@ -27,7 +26,6 @@ export default function Body() {
         );
 
     };
-    const { loggedInUser, setUserName } = useContext(UserContext)
     const onlineStatus = useOnlineStatus();
 
     if (onlineStatus === false)
